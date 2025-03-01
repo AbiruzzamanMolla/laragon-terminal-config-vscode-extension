@@ -1,23 +1,56 @@
 {
   "name": "laragon-terminal-config",
   "displayName": "Laragon Terminal Config",
-  "description": "A VS Code extension to set the Laragon terminal profile as default on Windows.",
+  "description": "A VS Code extension to set the Laragon terminal profile as default on Windows with a customizable path.",
   "version": "0.0.1",
+  "publisher": "azmolla",
+  "icon": "icon.webp",
   "engines": {
-    "vscode": "^1.97.0"
+    "vscode": "^1.94.0"
   },
+  "bugs": {
+    "url": "https://github.com/AbiruzzamanMolla/laragon-terminal-config-vscode-extension/issues"
+  },
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=azmolla.laragon-terminal-config",
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "keywords": [
+    "laragon",
+    "terminal",
+    "cmder"
+  ],
+  "activationEvents": [
+    "onCommand:laragon-terminal-config.setProfile"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "laragon-terminal-config.helloWorld",
-        "title": "Hello World"
+        "command": "laragon-terminal-config.setProfile",
+        "title": "Set Laragon Terminal as Default"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Laragon Terminal Config",
+      "properties": {
+        "laragonTerminalConfig.laragonPath": {
+          "type": "string",
+          "default": "${env:windir}\\System32\\cmd.exe",
+          "description": "The path to the Laragon Cmder executable."
+        },
+        "laragonTerminalConfig.setAsDefault": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically set Laragon terminal as the default terminal in VS Code."
+        }
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AbiruzzamanMolla/laragon-terminal-config-vscode-extension.git"
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -28,7 +61,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.97.0",
+    "@types/vscode": "^1.94.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
     "@typescript-eslint/eslint-plugin": "^8.22.0",
@@ -37,5 +70,11 @@
     "typescript": "^5.7.3",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1"
-  }
+  },
+  "extensionKind": [
+    "workspace"
+  ],
+  "os": [
+    "win32"
+  ]
 }

@@ -1,26 +1,65 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+  // Register the command to set or update the Laragon terminal profile.
+  let disposable = vscode.commands.registerCommand(
+    "laragon-terminal-config.setProfile",
+    async () => {
+      try {
+        // Access the VS Code configuration
+        const config = vscode.workspace.getConfiguration();
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "laragon-terminal-config" is now active!');
+        // Read custom settings from the configuration.
+        // The settings keys must match those defined in package.json.
+        const laragonPath =
+          config.get<string>("laragonTerminalConfig.laragonPath") ||
+          "${env:windir}\\System32\\cmd.exe";
+        const setAsDefault =
+          config.get<boolean>("laragonTerminalConfig.setAsDefault") ?? true;
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('laragon-terminal-config.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Laragon Terminal Config!');
-	});
+        // Retrieve the current terminal profiles for Windows (if any exist).
+        const currentProfiles =
+          (config.get("terminal.integrated.profiles.windows") as any) || {};
 
-	context.subscriptions.push(disposable);
+        // Update or create the Laragon terminal profile using the custom path.
+        currentProfiles["laragon"] = {
+          path: laragonPath,
+          args: ["/k", "C:\\laragon\\bin\\cmder\\vendor\\bin\\vscode_init.cmd"],
+        };
+
+        // Update the terminal profiles configuration globally.
+        await config.update(
+          "terminal.integrated.profiles.windows",
+          currentProfiles,
+          vscode.ConfigurationTarget.Global
+        );
+
+        // If the setting is enabled, set the Laragon terminal as the default.
+        if (setAsDefault) {
+          await config.update(
+            "terminal.integrated.defaultProfile.windows",
+            "laragon",
+            vscode.ConfigurationTarget.Global
+          );
+        }
+
+        vscode.window.showInformationMessage(
+          "Laragon terminal profile updated successfully!"
+        );
+      } catch (error) {
+        vscode.window.showErrorMessage(
+          "Error updating Laragon terminal profile: " + error
+        );
+      }
+    }
+  );
+
+  // Add the disposable to the context's subscriptions so it is disposed automatically.
+  context.subscriptions.push(disposable);
+
+  // Optionally, if you want to run the command automatically on activation,
+  // you can uncomment the line below. For now, it will only run when invoked via the Command Palette.
+  vscode.commands.executeCommand('laragon-terminal-config.setProfile');
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}
