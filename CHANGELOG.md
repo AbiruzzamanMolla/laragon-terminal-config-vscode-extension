@@ -2,11 +2,7 @@
 
 All notable changes to the "laragon-terminal-config" extension will be documented in this file.
 
-This project adheres to [Semantic Versioning](http://semver.org/).
-
-The format is based on [Keep a Changelog](http://keepachangelog.com/).
-
-## [Unreleased]
+## [Released]
 
 ### Added
 - Customizable setting `laragonTerminalConfig.laragonPath` to specify the path to the Laragon Cmder executable.
@@ -14,7 +10,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Command `laragon-terminal-config.setProfile` to update the terminal configuration manually from the Command Palette.
 - Automatic updating of the Windows terminal profile upon extension activation if the setting is enabled.
 
-## [0.0.1] - YYYY-MM-DD
+
+
+## [0.0.2] - 2025-03-01
+
+### Updates
+- Changed the name of this extention to ``` Laragon Cmder Terminal Config (Windows) ```
+
+## [0.0.1] - 2025-03-01
 
 ### Initial Release
 - Initial release of the Laragon Terminal Config extension.

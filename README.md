@@ -1,6 +1,10 @@
+# Laragon Cmder Terminal Config (Windows)
+
+![Laragon Cmder Terminal Config (Windows)](./icon.webp)
+
 # Laragon Terminal Config
 
-A VS Code extension that configures the integrated terminal on Windows to use Laragon's Cmder, with a customizable executable path and an option to set it as the default terminal.
+A VS Code extension **[Laragon Cmder Terminal Config (Windows)](https://marketplace.visualstudio.com/items?itemName=azmolla.laragon-terminal-config)** that configures the integrated terminal on Windows to use Laragon's Cmder, with a customizable executable path and an option to set it as the default terminal.
 
 ## Features
 
@@ -12,22 +16,11 @@ A VS Code extension that configures the integrated terminal on Windows to use La
     _Default: `true`_
 - **Command Palette:** Run the command **Set Laragon Terminal as Default** to update your terminal configuration manually.
 
-## Getting Started
+## Installation
 
-### Prerequisites
+1. **Install via Marketplace**:
+   - Open Visual Studio Code or VSCodium.
+   - Go to the Extensions view by clicking on the Extensions icon in the Activity Bar.
+   - Search for **Laragon Cmder Terminal Config (Windows)** and click **Install**.
 
-- [Node.js](https://nodejs.org/) installed on your system.
-- VS Code installed.
-
-### Installation & Running in Development
-
-1. **Clone or Download the Repository:**
-
-   Clone this repository or download the extension code to your local machine.
-
-2. **Install Dependencies:**
-
-   Open a terminal in the extension’s root directory and run:
-
-   ```bash
-   npm install
+   Or visit the extension [on the VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=azmolla.laragon-terminal-config) or [on the Open VSX Marketplace](https://open-vsx.org/extension/azmolla/laragon-terminal-config).

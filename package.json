@@ -1,8 +1,8 @@
 {
   "name": "laragon-terminal-config",
-  "displayName": "Laragon Terminal Config",
+  "displayName": "Laragon Cmder Terminal Config (Windows)",
   "description": "A VS Code extension to set the Laragon terminal profile as default on Windows with a customizable path.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "azmolla",
   "icon": "icon.webp",
   "engines": {
